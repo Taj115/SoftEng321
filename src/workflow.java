@@ -8,7 +8,7 @@ public class workflow {
         this.immigrantStatus = immigrantStatus;
     }
 
-    private boolean updateDatabase(int immigrantId, String immigrantStatus) {
+    public boolean updateDatabase(int immigrantId, String immigrantStatus) {
 
         return false;
     }
