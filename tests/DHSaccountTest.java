@@ -46,10 +46,15 @@ public class DHSaccountTest {
     }
 
     @Test
-    public void validateInfoInvalidIDTest() {
-        DHSaccount test = new DHSaccount("Bob Ross", "bross", -899, "Valid_status");
-        assertEquals(-1, test.immigrantId);
+    public void validateInfoStatusTest() { // Siddharth - Test for invalid immigrant status sent to validateInfo
+        DHSaccount test = new DHSaccount("Bob Ross", "bross", 943, null);
+        assertEquals(false, test.validateInfo(test.immigrantStatus, test.immigrantId));
     }
 
+    @Test
+    public void validateInfoIDTest() { // Siddharth - Test for invalid immigrant ID sent to validateInfo
+        DHSaccount test = new DHSaccount("Joe Smith", "jsmith", -123, "some_valid_status");
+        assertEquals(false, test.validateInfo(test.immigrantStatus, test.immigrantId));    
+    }
     
 }

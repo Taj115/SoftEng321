@@ -25,7 +25,7 @@ public class DHSaccount {
 
 
     // Checks if the info provided is valid.
-    private boolean validateInfo(String immigrantStaus, int immigrantId) {
+    public boolean validateInfo(String immigrantStaus, int immigrantId) {
 
         return true;
     }
