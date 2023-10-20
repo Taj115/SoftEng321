@@ -27,8 +27,8 @@ public class DHSaccount {
         return true;
     }
 
-    private boolean sendImmigrantStatus(String immigrantStatus) {
-        if(immigrantStatus == null || immigrantStatus.isEmpty()) 
+    public boolean sendImmigrantStatus(String immigrantStatus) {
+        if(immigrantStatus == null || immigrantStatus.trim().isEmpty()) 
             return false;
         return true;
     }
