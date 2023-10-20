@@ -8,17 +8,20 @@ public class workflow {
         this.immigrantStatus = immigrantStatus;
     }
 
+    // Updates the Database with new information 
     public boolean updateDatabase(int immigrantId, String immigrantStatus) {
 
         return false;
     }
 
+    // Pushes the information of the immigrant to the reviewer to make changes
     public String pushToReviewer() {
 
         return "";
 
     }
 
+    // Pushes the information of the immigrant to the approver to approve changes and submit
     public String pushToApprover(int immigrantId, String immigrantStatus) {
 
         return "";

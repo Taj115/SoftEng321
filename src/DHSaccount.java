@@ -9,6 +9,7 @@ public class DHSaccount {
     public boolean isFormatValid;
     protected boolean approved;
 
+    // Basic constructor for DHS to do what they need to do for their job
     public DHSaccount(String dhsName, String dhsId, int immigrantId, String immigrantStatus) {
         this.dhsName = dhsName;
         this.dhsId = dhsId;
@@ -22,11 +23,14 @@ public class DHSaccount {
         this.approved = false;
     }
 
+
+    // Checks if the info provided is valid.
     private boolean validateInfo(String immigrantStaus, int immigrantId) {
 
         return true;
     }
 
+    // Sends Immigrant Status to workflow table to be updated
     public boolean sendImmigrantStatus(String immigrantStatus) {
 
         return true;
