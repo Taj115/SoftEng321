@@ -1,3 +1,4 @@
+package src;
 public class workflow {
     public int immigrantId;
     public String immigrantStatus;
@@ -19,7 +20,7 @@ public class workflow {
     }
 
     public String pushToApprover(int immigrantId, String immigrantStatus) {
-        
+
         return "";
     }
 }
