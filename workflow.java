@@ -1,4 +1,7 @@
 public class workflow {
+    public int immigrantId;
+    public String immigrantStatus;
+
     public workflow() {
 
     }
@@ -14,8 +17,8 @@ public class workflow {
 
     }
 
-    public String pushToApprover() {
-
+    public String pushToApprover(int immigrantId, String immigrantStatus) {
+        
         return "";
     }
 }

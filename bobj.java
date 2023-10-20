@@ -40,16 +40,22 @@ public class bobj {
     }
 
     // Revewier
-    private boolean changeStatus() {
+    private boolean changeStatus(int immigrantId, String newStatus) {
+        if (immigrantId < 0 || newStatus == null || newStatus == "")
+            return false;
 
-        return false;
+        this.newStatus = newStatus;
 
+        return true;
     }
 
-    private boolean submitReview() {
+    private boolean submitReview(int immigrantId, String immigrantStatus) {
+        if (immigrantId < 0 || immigrantStatus == null || immigrantStatus == "")
+            return false;
 
-        return false;
+        
 
+        return true;
     }
 
     // Approver
