@@ -3,11 +3,12 @@ public class workflow {
     public int immigrantId;
     public String immigrantStatus;
 
-    public workflow() {
-
+    public workflow(int immigrantId, String immigrantStatus) {
+        this.immigrantId = immigrantId;
+        this.immigrantStatus = immigrantStatus;
     }
 
-    private boolean updateDatabase() {
+    private boolean updateDatabase(int immigrantId, String immigrantStatus) {
 
         return false;
     }
