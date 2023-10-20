@@ -1,3 +1,4 @@
+package src;
 public class DHSaccount {
     private String dhsName, dhsId;
 
@@ -27,8 +28,8 @@ public class DHSaccount {
     }
 
     private boolean sendImmigrantStatus(String immigrantStatus) {
-
-
+        if(immigrantStatus == null || immigrantStatus.isEmpty()) 
+            return false;
         return true;
     }
 }
