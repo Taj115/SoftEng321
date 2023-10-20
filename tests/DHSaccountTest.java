@@ -44,4 +44,12 @@ public class DHSaccountTest {
         DHSaccount test = new DHSaccount("Pop Man", "bfranz", 3, null);
         assertEquals(false, test.sendImmigrantStatus(test.immigrantStatus));
     }
+
+    @Test
+    public void validateInfoInvalidIDTest() {
+        DHSaccount test = new DHSaccount("Bob Ross", "bross", -899, "Valid_status");
+        assertEquals(-1, test.immigrantId);
+    }
+
+    
 }
