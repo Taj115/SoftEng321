@@ -12,36 +12,36 @@ public class DHSaccountTest {
     @Test
     public void DHSconstructorTest1() { // Antonios
         DHSaccount test = new DHSaccount("Bob Franz", "bfranz", -123124, "Test Status");
-        assertEquals(test.immigrantId, -1);
+        assertEquals(-1, test.immigrantId);
     }
 
     @Test
     public void DHSconstructorTest2() { // Antonios
         DHSaccount test = new DHSaccount("Bob Franz", "bfranz", 123, null);
-        assertEquals(test.immigrantStatus, null);
+        assertEquals(null, test.immigrantStatus);
     }
 
     @Test
     public void DHSconstructorTest3() { // Antonios
         DHSaccount test = new DHSaccount("Bob Franz", "bfranz", 123, "");
-        assertEquals(test.immigrantStatus, null);
+        assertEquals(null, test.immigrantStatus);
     }
 
     @Test
     public void SendImmigrantStatusTest1() { // Antonios
         DHSaccount test = new DHSaccount("Bob Franz", "bfranz", 123, "Test Status 123");
-        assertEquals(test.sendImmigrantStatus(test.immigrantStatus), true);
+        assertEquals(true, test.sendImmigrantStatus(test.immigrantStatus));
     }
 
     @Test
     public void SendImmigrantStatusTest2() { // Antonios
         DHSaccount test = new DHSaccount("Fred Zach", "bfranz", 1, " ");
-        assertEquals(test.sendImmigrantStatus(test.immigrantStatus), false);
+        assertEquals(false, test.sendImmigrantStatus(test.immigrantStatus));
     }
 
     @Test
     public void SendImmigrantStatusTest3() { // Antonios
         DHSaccount test = new DHSaccount("Pop Man", "bfranz", 3, null);
-        assertEquals(test.sendImmigrantStatus(test.immigrantStatus), false);
+        assertEquals(false, test.sendImmigrantStatus(test.immigrantStatus));
     }
 }
