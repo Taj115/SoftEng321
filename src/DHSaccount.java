@@ -10,6 +10,12 @@ public class DHSaccount {
     protected boolean approved;
 
     public DHSaccount(String dhsName, String dhsId, int immigrantId, String immigrantStatus) {
+        if(immigrantId < 0) 
+            immigrantId = -1;
+        
+        if(immigrantStatus == null || immigrantStatus.trim().isEmpty())
+            immigrantStatus = null;
+
         this.dhsName = dhsName;
         this.dhsId = dhsId;
 
