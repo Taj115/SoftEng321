@@ -21,16 +21,17 @@ public class workflowtest {
     @Test
     public void workflowConstructorNullTest(){
         workflow obj = new workflow(25, null);
-
         assertFalse("Workflow object shouldn't have a string of null", obj.immigrantStatus == null);
     }
 
+    //Test to make sure there's no empty string - Taj
     @Test
     public void workflowConstructorEmptyStringTest(){
         workflow obj = new workflow(71, "");
         assertFalse("Workflow object shouldn't have a string that's empty", obj.immigrantStatus == "");
     }
-
+    
+    //Test to make sure there's no negative tests - Taj
     @Test
     public void workflowConstructorNegativeTest(){
         workflow obj = new workflow(-5, "Bob");
