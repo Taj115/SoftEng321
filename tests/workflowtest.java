@@ -54,28 +54,28 @@ public class workflowtest {
 
     }
 
-    //Test to check for invalid workflow object status- NULL check
+    //Test to check for invalid workflow object status- NULL check- Siddharth
     @Test
     public void pushToApproverNullStatusTest() {
         workflow obj = new workflow(123, null);
         assertEquals("Cannot push workflow object with NULL status", obj.pushToApprover(obj.immigrantId, obj.immigrantStatus));
     }
 
-    //Test to check for an empty status being pushed to Approver. 
+    //Test to check for an empty status being pushed to Approver- Siddharth
     @Test
     public void pushToApproverEmptyStatusTest() {
         workflow obj = new workflow(123, "");
         assertEquals("Cannot push workflow object with empty status", obj.pushToApprover(obj.immigrantId, obj.immigrantStatus));
     }
 
-    //Test to check for negative ID being pushed to Approver. 
+    //Test to check for negative ID being pushed to Approver- Siddharth
     @Test
     public void pushToApproverNegIdTest() {
         workflow obj = new workflow(-234, "Bob");
         assertEquals("Cannot push workflow object with negative ID.", obj.pushToApprover(obj.immigrantId, obj.immigrantStatus));
     }
 
-    //Test to check that an expected log message is printed on a succesful push to approver.
+    //Test to check that an expected log message is printed on a succesful push to approver- Siddharth
     @Test
     public void workflowPushToApproverTest() {
         workflow obj = new workflow(123, "Jan");
