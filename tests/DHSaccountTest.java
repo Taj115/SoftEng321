@@ -46,6 +46,12 @@ public class DHSaccountTest {
     }
 
     @Test
+    public void validateInfoEmptyStatusCheck() { // Siddharth - Test for empty status being passed to validateInfo
+        DHSaccount test = new DHSaccount("Bruce Wayne", "bwayne", 2344, "");
+        assertEquals(false, test.validateInfo(test.immigrantStatus, test.immigrantId));
+    }
+
+    @Test
     public void validateInfoStatusTest() { // Siddharth - Test for invalid immigrant status sent to validateInfo
         DHSaccount test = new DHSaccount("Bob Ross", "bross", 943, null);
         assertEquals(false, test.validateInfo(test.immigrantStatus, test.immigrantId));
