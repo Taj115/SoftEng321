@@ -1,13 +1,13 @@
 package src;
 
+import java.awt.Font;
 import java.util.logging.Logger;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.WindowConstants;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.JLabel;
 
 public class Reviewer {
     static Reviewer r;
@@ -34,6 +34,21 @@ public class Reviewer {
         button.addActionListener(event -> {
             String inText = text.getText();
             logger.info("Submitted " + inText + " to Approver...");
+
+            frame.dispose();
+
+            frame = new JFrame();
+            JLabel label = new JLabel("SUBMITTED TO APPROVER");
+
+            label.setBounds(10, 10, 400, 30);
+            label.setFont(new Font(null, Font.PLAIN, 15));
+
+            frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            frame.setSize(300, 100);
+            frame.setLayout(null);
+            frame.setVisible(true);
+            frame.add(label);
+
         });
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
