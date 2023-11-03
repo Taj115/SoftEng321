@@ -71,11 +71,11 @@ public class Reviewer {
             frame = new JFrame();
             label1 = new JLabel("SUBMITTED TO APPROVER");
 
-            label1.setBounds(10, 10, 400, 30);
             label1.setFont(new Font(null, Font.PLAIN, 15));
 
             frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             frame.setSize(300, 100);
+            frame.setLayout(new FlowLayout(FlowLayout.CENTER)); // Makes Sure items are centered with no weird gaps
             frame.setVisible(true);
             frame.setResizable(false);
             frame.add(label1);
