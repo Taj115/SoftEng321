@@ -15,7 +15,7 @@ public class workflow {
     }
 
     // Pushes the information of the immigrant to the reviewer to make changes
-    public String pushToReviewer() {
+    public String pushToReviewer(int immigrantId, String immigrantStatus) {
 
         return "";
 
@@ -26,4 +26,6 @@ public class workflow {
 
         return "";
     }
+
+
 }
