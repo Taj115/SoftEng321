@@ -1,38 +1,39 @@
 package src;
 
-import java.util.logging.Logger;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
-import java.awt.Font;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+public class Approver implements ActionListener{
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import javax.swing.WindowConstants;
-import javax.swing.JTextArea;
+    /*Various variables that need to be initialized
+    because they'll be used in various scope
+    */
+    JButton acceptButton = new JButton();
+    JButton denyButton = new JButton();
+    JFrame frame = new JFrame();
+    JTextArea immId = new JTextArea();
+    JTextArea immStat = new JTextArea();
+    JTextArea newStat = new JTextArea();
 
-public class Approver {
+    public Approver(DHSaccount user) {
+        //Boots up the screen and everything Approver does with new immigrant info
+        displayScreen(user.immigrantId, user.immigrantStatus, user.newStatus);
+    }
 
-    static Approver approver;
-    static DHSaccount acc;
+    public void displayScreen(int immigrantId, String immigrantStatus, String newStatus){
 
-    Logger logger = Logger.getLogger(getClass().getName());
-
-    //Private Variables
-    private JFrame frame;
-    private JPanel panel;
-    private JButton acceptButton;
-    private JButton denyButton;
-    private JTextArea label;
-
-    public Approver() {
-        frame = new JFrame("Approver Window");
-
-        panel = new JPanel();
-        acceptButton = new JButton("ACCEPT");
-        denyButton = new JButton("DENY");
+        //Sets the title and sizes it properly
+        frame.setTitle("Approver Window");
+        frame.pack();
+       
+        //Allows buttons to do actions when they're clicked on
+        acceptButton.addActionListener(this);
+        denyButton.addActionListener(this);
+       
+        //Puts text on the buttons so the user knows what does what
+        acceptButton.setText("ACCEPT");
+        denyButton.setText("DENY");
 
         //Set Sizes of the two buttons
         acceptButton.setPreferredSize(new Dimension(100, 100));
@@ -42,84 +43,111 @@ public class Approver {
         acceptButton.setBackground(Color.GREEN);
         denyButton.setBackground(Color.RED);
 
-        // Structures it so that they are on top of each other going down
-        panel.add(acceptButton);
-        panel.add(denyButton);
+        immId.setText("Immigrant ID: " + immigrantId);
+        immStat.setText("Immigrant Status: " + immigrantStatus);
+        newStat.setText("Requested Status: " + newStatus);
 
-        // Specific Button Interaction
-        acceptButton.addActionListener(event -> {
-            logger.info("Immigrant Status Change Accepted, notifying immigrant...");
-
-            // Kills current Window
-            frame.dispose();
-
-            //New Frame for accept button
-            frame = new JFrame();
-
-            //Text with an appropriate size
-            label = new JTextArea("IMMIGRANT STATUS APPROVED");
-            label.setFont(new Font(null, Font.PLAIN, 20));
-            label.setSize(300, 200);
-
-            //If text is too long, wraps to the next line
-            label.setWrapStyleWord(true);
-            label.setLineWrap(true);
-            label.setOpaque(false);
-            
-            //Sets the frame to the middle, not resizable, and a fixed size
-            createFrame(frame, 400, 150);
-            frame.add(label);
-        });
-
-        // Specific Button Interaction
-        denyButton.addActionListener(event -> {
-            logger.info("Immigrant Status Change Denied, sending back to Reviewer...");
-
-            // Kills current Window
-            frame.dispose();
-
-            //Creates new frame for deny button
-            frame = new JFrame();
-            
-            //Text with an appropriate size
-            label = new JTextArea("SENT BACK TO REVIEWER FOR FURTHER REVIEW");
-            label.setFont(new Font(null, Font.PLAIN, 20));
-            label.setSize(300, 200);
-
-            //If text is too long, wraps to the next line
-            label.setWrapStyleWord(true);
-            label.setLineWrap(true);
-            label.setOpaque(false);
+        immId.setBounds(5, 20, 265, 50);
+        immStat.setBounds(5, 70, 265, 50);
+        newStat.setBounds(5, 120, 265, 50);
         
-            //Sets the frame to the middle, not resizable, and a fixed size
-            createFrame(frame, 400, 150);
-            frame.add(label);
-        });
+        createTextAreaSpecs(immId, 15, immId.getWidth(), immId.getHeight());
+        createTextAreaSpecs(immStat, 15, immStat.getWidth(), immStat.getHeight());
+        createTextAreaSpecs(newStat, 15, newStat.getWidth(), newStat.getHeight());
 
-        //Sets the size and puts the frame in the middle
-        
-        createFrame(frame, 350, 200);
-        frame.add(panel);
+        acceptButton.setBounds(270, 0, 150, 150);
+        denyButton.setBounds(430, 0, 150, 150);
+
+        //Adds the buttons onto the frame so the buttons are seen on the screen
+        frame.getContentPane().add(immStat);
+        frame.getContentPane().add(immId);
+        frame.getContentPane().add(newStat);
+
+        frame.getContentPane().add(acceptButton);
+        frame.getContentPane().add(denyButton); 
+
+        //Method that sets the size, makes it visible, etc
+        createFrameSpecs(frame, 600, 250);
 
     }
 
-    private static void createWindow() {
-        approver = new Approver();
+    /*
+     * This method determines what happens when a button is pressed
+     */
+    public void actionPerformed(ActionEvent e){
+       
+        //If the accept button was clicked, perform all this
+        if(e.getSource() == acceptButton){
+            
+            //Old window isn't needed anymore so we dispose it
+            frame.dispose();
+
+            //New Frame for what shows after clicking accept
+            JFrame acceptFrame = new JFrame();
+            createFrameSpecs(acceptFrame, 400, 150);
+            acceptFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+            //Text with an appropriate size
+            JTextArea textArea = new JTextArea("IMMIGRANT STATUS APPROVED");
+            createTextAreaSpecs(textArea, 20, 350, 200);
+
+            //Adds the new text onto the frame so user can see it
+            acceptFrame.getContentPane().add(textArea, BorderLayout.CENTER);
+        }
+
+        //If the deny button was clicked, perform all this
+        else if(e.getSource() == denyButton){
+            
+            // Old window isn't needed anymore so we dispose it
+            frame.dispose();
+
+            //New frame for what shows after clicking deny
+            JFrame  denyFrame = new JFrame();
+            createFrameSpecs(denyFrame, 400, 150);
+            denyFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+            //Text with an appropriate size
+            JTextArea textArea = new JTextArea("SENT BACK TO REVIEWER FOR FURTHER REVIEW");
+            createTextAreaSpecs(textArea, 20, 350, 200);
+            
+            //Adds the new text onto the frame so user can see it
+            denyFrame.getContentPane().add(textArea, BorderLayout.CENTER);
+        }
+
     }
 
-    private static void createFrame(JFrame frame, int width, int height)
+    /*
+     * Private method for all the little details that all my JTextArea's have.
+     * For example, they all are the same font, CAN'T be edited, and allow for
+     * the text to be wrapped from one line to the next
+     */
+    private void createTextAreaSpecs(JTextArea textArea, int size, int width, int height){
+
+        textArea.setFont(new Font(null, Font.PLAIN, size));
+        textArea.setSize(width, height);
+        textArea.setEditable(false);
+
+        textArea.setWrapStyleWord(true);
+        textArea.setLineWrap(true);
+        textArea.setOpaque(false);
+
+    }
+
+    /*
+     * Private method for all the little details that all my frames come along with
+     * For example, they all show up on the center of the screen, can have certain sizes
+     * and then the frame is visible
+     */
+    private void createFrameSpecs(JFrame frame, int width, int height)
     {
-        frame.setLayout(new FlowLayout(FlowLayout.CENTER));
+        frame.setLayout(null);
         frame.setSize(width, height);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        frame.setResizable(false);
         frame.setLocationRelativeTo(null);
     }
-
-
+    
     public static void main(String[] args) {
-        acc = new DHSaccount("Tester123", "12379850326", 111, "ImmigrantGuy");
-        createWindow();
+        DHSaccount dhsAcc = new DHSaccount("Tester123", "12379850326", 111, "ImmigrantGuy");
+        Approver approver = new Approver(dhsAcc);
     }
 }
