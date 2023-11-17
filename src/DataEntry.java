@@ -1,5 +1,6 @@
-import java.util.logging.Logger;
 package src;
+
+import java.util.logging.Logger;
 
 import java.awt.Font;
 import java.awt.FlowLayout;
