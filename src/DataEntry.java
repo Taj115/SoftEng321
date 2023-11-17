@@ -1,7 +1,6 @@
 package src;
 
 import java.util.logging.Logger;
-import java.awt.Font;
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -10,12 +9,12 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.WindowConstants;
-import java.util.Queue;
-import java.util.LinkedList;
 
 public class DataEntry {
     static DataEntry d;
     static DHSaccount acc;
+    @SuppressWarnings("unused")
+    private workflow table;
 
     Logger logger = Logger.getLogger(getClass().getName());
 
@@ -30,9 +29,8 @@ public class DataEntry {
     private JLabel immigrantId;
     private JLabel immigrantStatus;
     private JLabel dhsId;
-    protected Queue<DHSaccount> queue;
 
-    public DataEntry() {
+    public DataEntry(workflow table) {
         frame = new JFrame("Data Entry BETA");
 
         panel = new JPanel();
@@ -45,7 +43,8 @@ public class DataEntry {
         immigrantId = new JLabel("Immigrant ID:");
         immigrantStatus = new JLabel("Immigrant Status:");
         dhsId = new JLabel("DHS ID:");
-queue = new LinkedList<>();
+
+        this.table = table;
 
         // Aligns These Elements to the Right side
         JPanel dhsName_panel = new JPanel();
@@ -81,34 +80,24 @@ queue = new LinkedList<>();
 
         // Specific Button Interaction
         submitButton.addActionListener(event -> {
-
             String dhsNameText = dhsName_textField.getText(); // Grabs whats in Text Box
             String dhsIdText = dhsId_textField.getText(); // Grabs whats in Text Box
             String immigrantIdText = immigrantId_textField.getText(); // Grabs whats in Text Box
             String immigrantStatusText = immigrantStatus_textField.getText(); // Grabs whats in Text Box
 
-            frame = new JFrame();
-            JLabel confirm_label;
-
             if (areFull(dhsNameText, dhsIdText, immigrantIdText, immigrantStatusText)) {
-                addInfoToQueue(dhsNameText, dhsIdText, immigrantIdText, immigrantStatusText);
-                confirm_label = new JLabel("Added to queue");
-                dhsName_textField.setText("");
-                dhsId_textField.setText("");
-                immigrantId_textField.setText("");
-                immigrantStatus_textField.setText("");
+                acc = new DHSaccount(dhsNameText, dhsIdText);
+                acc.setImmigrantID(immigrantIdText);
+                acc.setImmigrantStatus(immigrantStatusText);
+                table.addAccDatabase(acc);
+
+                frame.dispose();
+                table.pushToReviewer(acc);
             }
 
             else {
-                confirm_label = new JLabel("Please fill out all required information");
+                frame.setTitle("Please fill out all required information");
             }
-
-            confirm_label.setFont(new Font(null, Font.PLAIN, 15));
-            frame.setSize(300, 100);
-            frame.setLayout(new FlowLayout(FlowLayout.CENTER)); // Makes Sure items are centered with no weird gaps
-            frame.setVisible(true);
-            frame.setResizable(false);
-            frame.add(confirm_label);
         });
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -123,12 +112,7 @@ queue = new LinkedList<>();
         return (!(dhsName.isEmpty() || dhsId.isEmpty() || immigrantId.isEmpty() || immigrantStatus.isEmpty()));
     }
 
-    private void addInfoToQueue(String dhsName, String dhsId, String immigrantId, String immigrantStatus) {
-        queue.add(new DHSaccount(dhsName, dhsId, Integer.parseInt(immigrantId), immigrantStatus));
-        return;
-    }
-
     public static void main(String[] args) {
-        DataEntry obj = new DataEntry();
-    } 
+        // DataEntry obj = new DataEntry();
+    }
 }

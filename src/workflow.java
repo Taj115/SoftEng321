@@ -1,30 +1,40 @@
 package src;
-public class workflow {
-    public int immigrantId;
-    public String immigrantStatus;
+import java.util.LinkedList;
+import java.util.Queue;
 
-    public workflow(int immigrantId, String immigrantStatus) {
-        this.immigrantId = immigrantId;
-        this.immigrantStatus = immigrantStatus;
+public class workflow {
+    private Queue<DHSaccount> list;
+
+    public workflow() {
+        list = new LinkedList<>();
     }
 
     // Updates the Database with new information 
-    public boolean updateDatabase(int immigrantId, String immigrantStatus) {
+    public boolean addAccDatabase(DHSaccount acc) {
+        list.add(acc);
+        return true;
+    }
 
-        return false;
+    public boolean remAccDatabase() {
+        list.remove();
+        return true;
+    }
+
+    public void startDataEntry() {
+        @SuppressWarnings("unused")
+        DataEntry d = new DataEntry(this);
     }
 
     // Pushes the information of the immigrant to the reviewer to make changes
-    public String pushToReviewer(int immigrantId, String immigrantStatus) {
-
-        return "";
-
+    public void pushToReviewer(DHSaccount acc) {
+        @SuppressWarnings("unused")
+        Reviewer r = new Reviewer(acc, this, "Reviewer BETA");
     }
 
     // Pushes the information of the immigrant to the approver to approve changes and submit
-    public String pushToApprover(int immigrantId, String immigrantStatus) {
-
-        return "";
+    public void pushToApprover(DHSaccount acc) {
+        @SuppressWarnings("unused")
+        Approver a = new Approver(acc, this);
     }
 
 
