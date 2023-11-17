@@ -1,18 +1,17 @@
 package src;
 
 import java.util.logging.Logger;
-
 import java.awt.Font;
 import java.awt.FlowLayout;
-
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.WindowConstants;
+import java.util.Queue;
+import java.util.LinkedList;
 
 public class DataEntry {
     static DataEntry d;
@@ -22,91 +21,114 @@ public class DataEntry {
 
     private JFrame frame;
     private JPanel panel;
-    private JButton button;
-    private JTextField text1;
-    private JTextField text2;
-    private JPasswordField text3;
-    private JLabel label1;
-    private JLabel label2;
-    private JLabel label3;
+    private JButton submitButton;
+    private JTextField dhsName_textField;
+    private JTextField immigrantId_textField;
+    private JTextField immigrantStatus_textField;
+    private JTextField dhsId_textField;
+    private JLabel dhsName;
+    private JLabel immigrantId;
+    private JLabel immigrantStatus;
+    private JLabel dhsId;
+    protected Queue<DHSaccount> queue;
 
     public DataEntry() {
         frame = new JFrame("Data Entry BETA");
 
         panel = new JPanel();
-        button = new JButton("Submit");
-        text1 = new JTextField(20);
-        text2 = new JTextField(20);
-        text3 = new JPasswordField(20);
-        label1 = new JLabel("Immigrant ID:");
-        label2 = new JLabel("Immigrant Name:");
-        label3 = new JLabel("DHS Password:");
+        submitButton = new JButton("Submit");
+        dhsName_textField = new JTextField(20);
+        immigrantId_textField = new JTextField(20);
+        immigrantStatus_textField = new JTextField(20);
+        dhsId_textField = new JTextField(20);
+        dhsName = new JLabel("DHS Name:");
+        immigrantId = new JLabel("Immigrant ID:");
+        immigrantStatus = new JLabel("Immigrant Status:");
+        dhsId = new JLabel("DHS ID:");
+queue = new LinkedList<>();
 
         // Aligns These Elements to the Right side
-        JPanel tranPanel1 = new JPanel();
-        tranPanel1.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        tranPanel1.add(label1);
-        tranPanel1.add(text1);
+        JPanel dhsName_panel = new JPanel();
+        dhsName_panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        dhsName_panel.add(dhsName);
+        dhsName_panel.add(dhsName_textField);
 
         // Aligns These Elements to the Right Side
-        // JPanel tranPanel2 = new JPanel();
-        // tranPanel2.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        // tranPanel2.add(label2);
-        // tranPanel2.add(text2);
+        JPanel dhsId_panel = new JPanel();
+        dhsId_panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        dhsId_panel.add(dhsId);
+        dhsId_panel.add(dhsId_textField);
 
         // Aligns These Elements to the Right Side
-        JPanel tranPanel3 = new JPanel();
-        tranPanel3.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        tranPanel3.add(label3);
-        tranPanel3.add(text3);
+        JPanel immigrantId_panel = new JPanel();
+        immigrantId_panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        immigrantId_panel.add(immigrantId);
+        immigrantId_panel.add(immigrantId_textField);
+
+        // Aligns These Elements to the Right Side
+        JPanel immigrantStatus_panel = new JPanel();
+        immigrantStatus_panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        immigrantStatus_panel.add(immigrantStatus);
+        immigrantStatus_panel.add(immigrantStatus_textField);
 
         // Structures it so that they are on top of each other going down
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.add(tranPanel1);
-        // panel.add(tranPanel2);
-        panel.add(tranPanel3);
-        panel.add(button);
+        panel.add(dhsName_panel);
+        panel.add(dhsId_panel);
+        panel.add(immigrantId_panel);
+        panel.add(immigrantStatus_panel);
+        panel.add(submitButton);
 
         // Specific Button Interaction
-        button.addActionListener(event -> {
-            String inText = text2.getText(); // Grabs whats in Text Box
-            logger.info("Submitted " + inText + " to Reviewer...");
+        submitButton.addActionListener(event -> {
 
-            // Updates Status => if valid continue if not do nothing...
-            if (!acc.sendImmigrantStatus(inText))
-                return;
-
-            // Kills current Window
-            frame.dispose();
+            String dhsNameText = dhsName_textField.getText(); // Grabs whats in Text Box
+            String dhsIdText = dhsId_textField.getText(); // Grabs whats in Text Box
+            String immigrantIdText = immigrantId_textField.getText(); // Grabs whats in Text Box
+            String immigrantStatusText = immigrantStatus_textField.getText(); // Grabs whats in Text Box
 
             frame = new JFrame();
-            label1 = new JLabel("Log in successful");
+            JLabel confirm_label;
 
-            label1.setFont(new Font(null, Font.PLAIN, 15));
+            if (areFull(dhsNameText, dhsIdText, immigrantIdText, immigrantStatusText)) {
+                addInfoToQueue(dhsNameText, dhsIdText, immigrantIdText, immigrantStatusText);
+                confirm_label = new JLabel("Added to queue");
+                dhsName_textField.setText("");
+                dhsId_textField.setText("");
+                immigrantId_textField.setText("");
+                immigrantStatus_textField.setText("");
+            }
 
-            frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            else {
+                confirm_label = new JLabel("Please fill out all required information");
+            }
+
+            confirm_label.setFont(new Font(null, Font.PLAIN, 15));
             frame.setSize(300, 100);
             frame.setLayout(new FlowLayout(FlowLayout.CENTER)); // Makes Sure items are centered with no weird gaps
             frame.setVisible(true);
             frame.setResizable(false);
-            frame.add(label1);
+            frame.add(confirm_label);
         });
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(450, 150);
+        frame.setSize(450, 215);
         frame.setLayout(new FlowLayout(FlowLayout.CENTER)); // Makes Sure items are centered with no weird gaps
         frame.setVisible(true);
         frame.setResizable(false);
         frame.add(panel);
     }
 
+    private boolean areFull(String dhsName, String dhsId, String immigrantId, String immigrantStatus) {
+        return (!(dhsName.isEmpty() || dhsId.isEmpty() || immigrantId.isEmpty() || immigrantStatus.isEmpty()));
+    }
 
-    private static void createWindow() {
-        d = new DataEntry();
+    private void addInfoToQueue(String dhsName, String dhsId, String immigrantId, String immigrantStatus) {
+        queue.add(new DHSaccount(dhsName, dhsId, Integer.parseInt(immigrantId), immigrantStatus));
+        return;
     }
 
     public static void main(String[] args) {
-        acc = new DHSaccount("a", "z", 123123, null);
-        createWindow();
+        DataEntry obj = new DataEntry();
     } 
 }
