@@ -27,6 +27,8 @@ public class Reviewer {
     private JPanel panel;
     private JButton button;
 
+    // Constructor to make sure all the data needed is initalized before creating
+    // any windows
     public Reviewer(DHSaccount acc, workflow table, String version) {
         logger = Logger.getLogger(getClass().getName());
 
@@ -42,13 +44,16 @@ public class Reviewer {
         createWindow();
     }
 
+    // Helper method to reduce clutter and makes accessing items easier. Creates
+    // componenets to be added to panel
     private JPanel componentAdd(String preset, int textCol, String labelTag, int flow, JButton button) {
         JPanel ret = new JPanel();
         JLabel label = new JLabel(labelTag + ":");
         JTextField text = new JTextField(preset, textCol);
 
-        args.add(text);
+        args.add(text); // adds to array for later use
 
+        // determines alignment
         ret.setLayout((flow == 0) ? new FlowLayout(FlowLayout.LEFT) : new FlowLayout(FlowLayout.RIGHT));
         ret.add(label);
         ret.add(text);
@@ -59,14 +64,15 @@ public class Reviewer {
                 String ID = args.get(0).getText();
                 String upStatus = args.get(1).getText();
 
+                // Make sure fields arent empty
                 if (ID.isEmpty() || upStatus.isEmpty())
                     return;
-
 
                 // Updates Status => if valid continue if not do nothing...
                 if (!acc.validateImmigrantStatus(upStatus))
                     return;
-
+                
+                // Updates ID => if valid continue if not do nothing...
                 if (!acc.validateImmigrantID(ID))
                     return;
 
@@ -75,6 +81,7 @@ public class Reviewer {
                 // Kills current Window
                 frame.dispose();
 
+                // send to workflow table to be sent to Approver
                 table.pushToApprover(acc);
             });
         }

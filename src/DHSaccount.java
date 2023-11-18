@@ -20,49 +20,60 @@ public class DHSaccount {
         this.newStatus = null;
     }
 
-    // Sends Immigrant Status to workflow table to be updated
+    // validates if the string given is only alpha characters and allows the
+    // inclusion of spaces
     public boolean validateImmigrantStatus(String Status) {
         newStatus = Pattern.matches("[a-zA-Z\s]*", Status) ? Status : null;
         return (newStatus != null) ? true : false;
     }
 
+    // validates if the string given is only numeric characters
     public boolean validateImmigrantID(String ID) {
         immigrantID = Pattern.matches("[0-9]*", ID) ? ID : null;
         return (immigrantID != null) ? true : false;
     }
 
+    // Get DHS account Name
     public String getAccName() {
         return dhsName;
     }
 
+    // Set DHS account Name
     public void setAccName(String name) {
         dhsName = name;
     }
 
+    // Get DHS account UID
     public String getAccID() {
         return dhsID;
     }
 
+    // Set DHS account UID
     public void setAccID(String ID) {
         dhsID = ID;
     }
 
+    // Get immigrant UID
     public String getImmigrantID() {
         return immigrantID;
     }
 
+    // Set immigrant UID
     public void setImmigrantID(String ID) {
         immigrantID = ID;
     }
 
+    // Get immigrant status
     public String getimmigrantStatus() {
         return immigrantStatus;
     }
 
+    // Set immigrant status
     public void setImmigrantStatus(String status) {
         immigrantStatus = status;
     }
 
+    // Get new immigrant status
     public String getRequestedImmigrantStatus() {
         return newStatus;
     }
