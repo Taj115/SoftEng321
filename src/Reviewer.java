@@ -71,7 +71,7 @@ public class Reviewer {
                 // Updates Status => if valid continue if not do nothing...
                 if (!acc.validateImmigrantStatus(upStatus))
                     return;
-                
+
                 // Updates ID => if valid continue if not do nothing...
                 if (!acc.validateImmigrantID(ID))
                     return;
