@@ -1,4 +1,5 @@
 package src;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -9,7 +10,7 @@ public class workflow {
         list = new LinkedList<>();
     }
 
-    // Updates the Database with new information 
+    // Updates the Database with new information
     public boolean addAccDatabase(DHSaccount acc) {
         list.add(acc);
         return true;
@@ -28,14 +29,14 @@ public class workflow {
     // Pushes the information of the immigrant to the reviewer to make changes
     public void pushToReviewer(DHSaccount acc) {
         @SuppressWarnings("unused")
-        Reviewer r = new Reviewer(acc, this, "Reviewer BETA");
+        Reviewer r = new Reviewer(acc, this, "ID: " + acc.getAccID() + " Name: " + acc.getAccName());
     }
 
-    // Pushes the information of the immigrant to the approver to approve changes and submit
+    // Pushes the information of the immigrant to the approver to approve changes
+    // and submit
     public void pushToApprover(DHSaccount acc) {
         @SuppressWarnings("unused")
         Approver a = new Approver(acc, this);
     }
-
 
 }

@@ -20,7 +20,6 @@ public class DHSaccount {
         this.newStatus = null;
     }
 
-
     // Sends Immigrant Status to workflow table to be updated
     public boolean validateImmigrantStatus(String Status) {
         newStatus = Pattern.matches("[a-zA-Z\s]*", Status) ? Status : null;
