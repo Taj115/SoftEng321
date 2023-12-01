@@ -89,7 +89,9 @@ public class DataEntry {
                 acc = new DHSaccount(dhsNameText, dhsIdText);
                 acc.setImmigrantID(immigrantIdText);
                 acc.setImmigrantStatus(immigrantStatusText);
-                table.addAccDatabase(acc);
+                if (!table.addAccDatabase(acc)) {
+                    logger.info("Unsucessful add to wrokflow table. Try again.");
+                }
 
                 frame.dispose();
                 table.pushToReviewer(acc);
