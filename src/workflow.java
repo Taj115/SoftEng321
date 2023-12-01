@@ -21,6 +21,27 @@ public class workflow {
         return true;
     }
 
+    public String getImmigrantStatus() {
+
+        if(list.peek() == null || list.peek().getimmigrantStatus() == null)
+        {
+            return "ERROR INVALID NAME";
+        }
+
+        return list.peek().getimmigrantStatus();
+
+    }
+
+    public String getImmigrantID() {
+
+        if(list.peek() == null || list.peek().getImmigrantID() == null)
+        {
+            return "-1";
+        }
+
+        return list.peek().getImmigrantID();
+    }
+
     public void startDataEntry() {
         @SuppressWarnings("unused")
         DataEntry d = new DataEntry(this);
