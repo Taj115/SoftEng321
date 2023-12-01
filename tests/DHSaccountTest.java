@@ -88,13 +88,13 @@ public class DHSaccountTest {
     @Test
     public void validateImmigrantIDTest2() {
         DHSaccount test = new DHSaccount("spidey", "status_active");
-        assertTrue(test.validateImmigrantId("1234"));
+        assertTrue(test.validateImmigrantID("1234"));
     }
 
     @Test
     public void validateImmigrantIDTest3() { // testing whether an immigrant ID will fail when alphanumeric id
         DHSaccount test = new DHSaccount("spidey", "status_active");
-        assertFalse(test.validateImmigrantId("status1234"));
+        assertFalse(test.validateImmigrantID("status1234"));
     }
 
 }
