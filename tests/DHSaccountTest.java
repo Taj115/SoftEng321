@@ -80,15 +80,33 @@ public class DHSaccountTest {
     }
 
     @Test
-    public void validateImmigrantIDTest() { // Siddharth - Test for invalid immigrant status sent to validateInfo
+    public void validateImmigrantIDTest() { // Siddharth - Test for invalid immigrant id sent to DHS account
         DHSaccount test = new DHSaccount("spidey", "status_active");
         assertFalse(test.validateImmigrantID("invalid_id"));
     }
 
     @Test
-    public void validateInfoIDTest() { // Siddharth - Test for invalid immigrant ID sent to validateInfo
-        // DHSaccount test = new DHSaccount("Joe Smith", "jsmith");
-        // assertEquals(false, test.validateInfo(test.immigrantStatus, test.immigrantId));    
+    public void validateImmigrantIDTest2() { // Siddharth - test whether an all numeric immigrant id passes. 
+        DHSaccount test = new DHSaccount("spidey", "status_active"); 
+        assertTrue(test.validateImmigrantID("1234"));
     }
-    
+
+    @Test
+    public void validateImmigrantIDTest3() { // Siddharth - testing whether an immigrant ID will fail with an alphanumeric id
+        DHSaccount test = new DHSaccount("spidey", "status_active");
+        assertFalse(test.validateImmigrantID("status1234"));
+    }
+
+    @Test
+    public void validateImmigrantIDTest4() { // Siddharth - testing whether an immigrant ID will fail with a negative id
+        DHSaccount test = new DHSaccount("spidey", "status_active");
+        assertFalse(test.validateImmigrantID("-1234"));
+    }
+
+    @Test
+    public void validateImmigrantIDTest5() {
+        DHSaccount test = new DHSaccount("spidey", "status_active");
+        assertFalse(test.validateImmigrantID(null));
+    }
+
 }
