@@ -69,12 +69,16 @@ public class Reviewer {
                     return;
 
                 // Updates Status => if valid continue if not do nothing...
-                if (!acc.validateImmigrantStatus(upStatus))
+                if (!acc.validateImmigrantStatus(upStatus)) {
+                    frame.setTitle("Invalid Status");
                     return;
+                }
 
                 // Updates ID => if valid continue if not do nothing...
-                if (!acc.validateImmigrantID(ID))
+                if (!acc.validateImmigrantID(ID)) {
+                    frame.setTitle("Invalid ID");
                     return;
+                }
 
                 logger.info("Submitted " + upStatus + " with ID of " + ID + " to Approver...");
 
