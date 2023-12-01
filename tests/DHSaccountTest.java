@@ -86,15 +86,21 @@ public class DHSaccountTest {
     }
 
     @Test
-    public void validateImmigrantIDTest2() {
-        DHSaccount test = new DHSaccount("spidey", "status_active");
+    public void validateImmigrantIDTest2() { // Siddharth - test whether an all numeric immigrant id passes. 
+        DHSaccount test = new DHSaccount("spidey", "status_active"); 
         assertTrue(test.validateImmigrantID("1234"));
     }
 
     @Test
-    public void validateImmigrantIDTest3() { // testing whether an immigrant ID will fail when alphanumeric id
+    public void validateImmigrantIDTest3() { // testing whether an immigrant ID will fail with an alphanumeric id
         DHSaccount test = new DHSaccount("spidey", "status_active");
         assertFalse(test.validateImmigrantID("status1234"));
+    }
+
+    @Test
+    public void validateImmigrantIDTest3() { // testing whether an immigrant ID will fail with a negative id
+        DHSaccount test = new DHSaccount("spidey", "status_active");
+        assertFalse(test.validateImmigrantID("-1234"));
     }
 
 }
