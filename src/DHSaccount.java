@@ -1,5 +1,7 @@
 package src;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.util.regex.*;
 
 public class DHSaccount {
@@ -18,17 +20,29 @@ public class DHSaccount {
         this.immigrantStatus = null;
 
         this.newStatus = null;
+
+        if(dhsName == null)
+            this.dhsName = "ERROR INVALD NAME";
+        
+        if(dhsID == null)
+            this.dhsID = "-1";
     }
 
     // validates if the string given is only alpha characters and allows the
     // inclusion of spaces
     public boolean validateImmigrantStatus(String Status) {
+        if(Status == null)
+            return false;
+
         newStatus = Pattern.matches("[a-zA-Z\s]*", Status) ? Status : null;
         return (newStatus != null) ? true : false;
     }
 
     // validates if the string given is only numeric characters
     public boolean validateImmigrantID(String ID) {
+        if(ID == null)
+            return false;
+
         immigrantID = Pattern.matches("[0-9]*", ID) ? ID : null;
         return (immigrantID != null) ? true : false;
     }

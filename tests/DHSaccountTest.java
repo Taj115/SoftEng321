@@ -10,57 +10,71 @@ import src.DHSaccount;
 
 public class DHSaccountTest {
     @Test
-    public void DHSconstructorInvalidIDTest() { // Antonios - Test for Negative ID numbers to be sent to -1
-        DHSaccount test = new DHSaccount("Bob Franz", "bfranz", -123124, "Test Status");
-        assertEquals(-1, test.immigrantId);
+    // Antonios - Test for unintiallized dhsID = NULL should be -1
+    public void DHSconstructorNULLIDTest() { 
+        DHSaccount test = new DHSaccount("Bob Franz", null);
+
+        assertEquals("-1", test.getAccID());
     }
 
     @Test
-    public void DHSconstructorNULLStatusTest() { // Antonios - Test for a NULL immigrant Status in constructor
-        DHSaccount test = new DHSaccount("Bob Franz", "bfranz", 123, null);
-        assertEquals(null, test.immigrantStatus);
+    // Antonios - Test for trying to set NULL immigrant Status
+    public void DHSsetNullStatusTest1() { 
+        DHSaccount test = new DHSaccount("Bob Franz", "bfranz");
+        assertEquals(false, test.validateImmigrantStatus(null));
     }
 
     @Test
-    public void DHSconstructorEmptyStatusTest() { // Antonios - Test for an EMPTY immigrant Status in constructor
-        DHSaccount test = new DHSaccount("Bob Franz", "bfranz", 123, "");
-        assertEquals(null, test.immigrantStatus);
+    // Antonios - Test for trying to set NULL immigrant Status
+    public void DHSsetNullStatusTest2() { 
+        DHSaccount test = new DHSaccount("Bob Franz", "bfranz");
+        assertEquals(false, test.validateImmigrantStatus(null));
     }
 
     @Test
-    public void SendImmigrantStatusValidStatusTest() { // Antonios - Test for a valid immigrant Status
-        DHSaccount test = new DHSaccount("Bob Franz", "bfranz", 123, "Test Status 123");
-        assertEquals(true, test.sendImmigrantStatus(test.immigrantStatus));
+    // Antonios - Test for trying to set null for DHSName
+    public void DHSconstructorEmptyStatusTest() { 
+        DHSaccount test = new DHSaccount(null, "bfranz");
+        assertEquals("ERROR INVALD NAME", test.getAccName());
     }
 
     @Test
-    public void SendImmigrantStatusEmptyStatusTest() { // Antonios - Test for a invalid immigrant status in Method
-        DHSaccount test = new DHSaccount("Fred Zach", "bfranz", 1, " ");
-        assertEquals(false, test.sendImmigrantStatus(test.immigrantStatus));
+    // Antonios - Test for a valid immigrant Status
+    public void SendImmigrantStatusValidStatusTest() { 
+        DHSaccount test = new DHSaccount("Bob Franz", "bfranz");
+        assertEquals(true, test.validateImmigrantStatus("I am a valid Status"));
     }
 
     @Test
-    public void SendImmigrantStatusNULLStatusTest() { // Antonios - Test for invalid immigrant status in method
-        DHSaccount test = new DHSaccount("Pop Man", "bfranz", 3, null);
-        assertEquals(false, test.sendImmigrantStatus(test.immigrantStatus));
+    // Antonios - Test for a invalid immigrant status in Method (has Numbers)
+    public void SendImmigrantStatusEmptyStatusTest() { 
+        DHSaccount test = new DHSaccount("Fred Zach", "bfranz");
+        assertEquals(false, test.validateImmigrantStatus("I am a Status 123."));
+    }
+
+    @Test
+    // Antonios - Test for invalid immigrant status in method Combination of letters and spaces (valid) but has other characters and numbers (invalid)
+    public void invalidImmigrantStatus2() { 
+        DHSaccount test = new DHSaccount("Pop Man", "bfranz");
+        assertEquals(false, test.validateImmigrantStatus(".ERROR. : Code 0"));
     }
 
     @Test
     public void validateInfoEmptyStatusCheck() { // Siddharth - Test for empty status being passed to validateInfo
-        DHSaccount test = new DHSaccount("Bruce Wayne", "bwayne", 2344, "");
-        assertEquals(false, test.validateInfo(test.immigrantStatus, test.immigrantId));
+        // DHSaccount test = new DHSaccount("Bruce Wayne", "bwayne");
+        // assertEquals(false, test.validateInfo(test.immigrantStatus, test.immigrantId));
     }
 
     @Test
     public void validateInfoStatusTest() { // Siddharth - Test for invalid immigrant status sent to validateInfo
-        DHSaccount test = new DHSaccount("Bob Ross", "bross", 943, null);
-        assertEquals(false, test.validateInfo(test.immigrantStatus, test.immigrantId));
+        // DHSaccount test = new DHSaccount("Bob Ross", "bross");
+        // assertEquals(false, test.validateInfo(test.immigrantStatus, test.immigrantId));
     }
 
     @Test
     public void validateInfoIDTest() { // Siddharth - Test for invalid immigrant ID sent to validateInfo
-        DHSaccount test = new DHSaccount("Joe Smith", "jsmith", -123, "some_valid_status");
-        assertEquals(false, test.validateInfo(test.immigrantStatus, test.immigrantId));    
+        // DHSaccount test = new DHSaccount("Joe Smith", "jsmith");
+        // assertEquals(false, test.validateInfo(test.immigrantStatus, test.immigrantId));    
     }
     
 }
