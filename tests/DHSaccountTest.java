@@ -98,7 +98,7 @@ public class DHSaccountTest {
     }
 
     @Test
-    public void validateImmigrantIDTest3() { // testing whether an immigrant ID will fail with a negative id
+    public void validateImmigrantIDTest4() { // testing whether an immigrant ID will fail with a negative id
         DHSaccount test = new DHSaccount("spidey", "status_active");
         assertFalse(test.validateImmigrantID("-1234"));
     }
