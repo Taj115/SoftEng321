@@ -1,6 +1,5 @@
 package tests;
 
-import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 // import org.junit.jupiter.api.Test;
 
@@ -18,16 +17,16 @@ public class DHSaccountTest {
 
     @Test
     // Antonios - Test for trying to set NULL immigrant Status
-    public void DHSsetNullStatusTest1() { 
+    public void DHSsetNullStatusTest() { 
         DHSaccount test = new DHSaccount("Bob Franz", "bfranz");
         assertEquals(false, test.validateImmigrantStatus(null));
     }
 
     @Test
-    // Antonios - Test for trying to set NULL immigrant Status
-    public void DHSsetNullStatusTest2() { 
+    // Antonios - Test for trying to set EMPTY immigrant Status
+    public void DHSsetEmptyStatusTest() { 
         DHSaccount test = new DHSaccount("Bob Franz", "bfranz");
-        assertEquals(false, test.validateImmigrantStatus(null));
+        assertEquals(false, test.validateImmigrantStatus(""));
     }
 
     @Test
