@@ -21,6 +21,11 @@ public class workflow {
         return true;
     }
 
+    public DHSaccount getImmigrant() {
+
+        return list.peek();
+    }
+
     public String getImmigrantStatus() {
 
         if(list.peek() == null || list.peek().getimmigrantStatus() == null)
