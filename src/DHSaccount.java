@@ -30,7 +30,6 @@ public class DHSaccount {
     public boolean validateImmigrantStatus(String Status) {
         if(Status == null || Status.isEmpty())
             return false;
-
         newStatus = Pattern.matches("[a-zA-Z\s]*", Status) ? Status : null;
         return (newStatus != null) ? true : false;
     }
