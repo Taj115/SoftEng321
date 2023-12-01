@@ -28,7 +28,7 @@ public class DHSaccount {
     // validates if the string given is only alpha characters and allows the
     // inclusion of spaces
     public boolean validateImmigrantStatus(String Status) {
-        if(Status == null)
+        if(Status == null || Status.isEmpty())
             return false;
 
         newStatus = Pattern.matches("[a-zA-Z\s]*", Status) ? Status : null;
@@ -37,7 +37,7 @@ public class DHSaccount {
 
     // validates if the string given is only numeric characters
     public boolean validateImmigrantID(String ID) {
-        if(ID == null)
+        if(ID == null || ID.isEmpty())
             return false;
 
         immigrantID = Pattern.matches("[0-9]*", ID) ? ID : null;
