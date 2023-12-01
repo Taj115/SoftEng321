@@ -75,6 +75,7 @@ public class DHSaccountTest {
     // Siddharth - Test for immigrant ID.
     public void getImmigrantIDTest() {
         DHSaccount test = new DHSaccount("Bourne", "status_2");
+        test.setImmigrantID("status2");
         assertEquals("status_2", test.getImmigrantID());
     }
 
