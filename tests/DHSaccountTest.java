@@ -1,6 +1,5 @@
 package tests;
 
-import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 // import org.junit.jupiter.api.Test;
 
@@ -13,22 +12,21 @@ public class DHSaccountTest {
     // Antonios - Test for unintiallized dhsID = NULL should be -1
     public void DHSconstructorNULLIDTest() { 
         DHSaccount test = new DHSaccount("Bob Franz", null);
-
         assertEquals("-1", test.getAccID());
     }
 
     @Test
     // Antonios - Test for trying to set NULL immigrant Status
-    public void DHSsetNullStatusTest1() { 
+    public void DHSsetNullStatusTest() { 
         DHSaccount test = new DHSaccount("Bob Franz", "bfranz");
         assertEquals(false, test.validateImmigrantStatus(null));
     }
 
     @Test
-    // Antonios - Test for trying to set NULL immigrant Status
-    public void DHSsetNullStatusTest2() { 
+    // Antonios - Test for trying to set EMPTY immigrant Status
+    public void DHSsetEmptyStatusTest() { 
         DHSaccount test = new DHSaccount("Bob Franz", "bfranz");
-        assertEquals(false, test.validateImmigrantStatus(null));
+        assertEquals(false, test.validateImmigrantStatus(""));
     }
 
     @Test
@@ -60,15 +58,31 @@ public class DHSaccountTest {
     }
 
     @Test
-    public void validateInfoEmptyStatusCheck() { // Siddharth - Test for empty status being passed to validateInfo
-        // DHSaccount test = new DHSaccount("Bruce Wayne", "bwayne");
-        // assertEquals(false, test.validateInfo(test.immigrantStatus, test.immigrantId));
+    // Siddharth - Test for correct account name being set.
+    public void getAccNameTest() {
+        DHSaccount test = new DHSaccount("Jerry Seinfeld", "inactive");
+        assertNotEquals("active", test.getAccName());
     }
 
     @Test
-    public void validateInfoStatusTest() { // Siddharth - Test for invalid immigrant status sent to validateInfo
-        // DHSaccount test = new DHSaccount("Bob Ross", "bross");
-        // assertEquals(false, test.validateInfo(test.immigrantStatus, test.immigrantId));
+    // Siddharth - Test for correct account ID being set
+    public void getAccIDTest() {
+        DHSaccount test = new DHSaccount("Jason", "status_1");
+        assertEquals("status_1", test.getAccID());
+    }
+
+    @Test
+    // Siddharth - Test for immigrant ID.
+    public void getImmigrantIDTest() {
+        DHSaccount test = new DHSaccount("Bourne", "status_2");
+        test.setImmigrantID("status_2");
+        assertEquals("status_2", test.getImmigrantID());
+    }
+
+    @Test
+    public void validateImmigrantIDTest() { // Siddharth - Test for invalid immigrant status sent to validateInfo
+        DHSaccount test = new DHSaccount("spidey", "status_active");
+        assertFalse(test.validateImmigrantID("invalid_id"));
     }
 
     @Test
