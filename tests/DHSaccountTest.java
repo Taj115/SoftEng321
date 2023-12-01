@@ -13,7 +13,6 @@ public class DHSaccountTest {
     // Antonios - Test for unintiallized dhsID = NULL should be -1
     public void DHSconstructorNULLIDTest() { 
         DHSaccount test = new DHSaccount("Bob Franz", null);
-
         assertEquals("-1", test.getAccID());
     }
 
@@ -57,6 +56,27 @@ public class DHSaccountTest {
     public void invalidImmigrantStatus2() { 
         DHSaccount test = new DHSaccount("Pop Man", "bfranz");
         assertEquals(false, test.validateImmigrantStatus(".ERROR. : Code 0"));
+    }
+
+    @Test
+    // Siddharth - Test for correct account name being set.
+    public void getAccNameTest() {
+        DHSaccount test = new DHSaccount("Jerry Seinfeld", "inactive");
+        assertNotEquals("active", test.getAccName());
+    }
+
+    @Test
+    // Siddharth - Test for correct account ID being set
+    public void getAccIDTest() {
+        DHSaccount test = new DHSaccount("Jason", "status_1");
+        assertEquals("status_1", test.getAccID());
+    }
+
+    @Test
+    // Siddharth - Test for immigrant ID.
+    public void getImmigrantIDTest() {
+        DHSaccount test = new DHSaccount("Bourne", "status_2");
+        assertEquals("status_2", test.getImmigrantID());
     }
 
     @Test
