@@ -21,10 +21,10 @@ public class DHSaccount {
 
         this.newStatus = null;
 
-        if(dhsName == null)
+        if(dhsName == null || dhsName.isEmpty())
             this.dhsName = "ERROR INVALD NAME";
         
-        if(dhsID == null)
+        if(dhsID == null || dhsID.isEmpty())
             this.dhsID = "-1";
     }
 
