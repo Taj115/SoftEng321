@@ -33,7 +33,7 @@ public class DHSaccountTest {
     // Antonios - Test for trying to set null for DHSName
     public void DHSconstructorEmptyStatusTest() { 
         DHSaccount test = new DHSaccount(null, "bfranz");
-        assertEquals("ERROR INVALD NAME", test.getAccName());
+        assertEquals("ERROR INVAILD NAME", test.getAccName());
     }
 
     @Test
