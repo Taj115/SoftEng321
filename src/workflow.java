@@ -16,20 +16,26 @@ public class workflow {
         return true;
     }
 
+    // Removes Head from list and returns true if operation succeeds
     public boolean remAccDatabase() {
         list.remove();
         return true;
     }
+
+    // The function returns the first element in a list of DHS accounts.
 
     public DHSaccount getImmigrant() {
 
         return list.peek();
     }
 
+    // The function returns the immigrant status of the first element in a list, or
+    // an error message if the
+    // list is empty or the immigrant status is null.
+
     public String getImmigrantStatus() {
 
-        if(list.peek() == null || list.peek().getimmigrantStatus() == null)
-        {
+        if (list.peek() == null || list.peek().getimmigrantStatus() == null) {
             return "ERROR INVALID NAME";
         }
 
@@ -37,16 +43,20 @@ public class workflow {
 
     }
 
+    // The function "getImmigrantID" returns the immigrant ID of the first element
+    // in a list, or "-1" if
+    // the list is empty or the immigrant ID is null.
+
     public String getImmigrantID() {
 
-        if(list.peek() == null || list.peek().getImmigrantID() == null)
-        {
+        if (list.peek() == null || list.peek().getImmigrantID() == null) {
             return "-1";
         }
 
         return list.peek().getImmigrantID();
     }
 
+    // The startDataEntry function creates a new instance of the DataEntry class.
     public void startDataEntry() {
         @SuppressWarnings("unused")
         DataEntry d = new DataEntry(this);

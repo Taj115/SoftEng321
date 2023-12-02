@@ -1,4 +1,5 @@
 package src;
+
 import java.util.regex.*;
 
 public class DHSaccount {
@@ -18,17 +19,17 @@ public class DHSaccount {
 
         this.newStatus = null;
 
-        if(dhsName == null || dhsName.isEmpty())
+        if (dhsName == null || dhsName.isEmpty())
             this.dhsName = "ERROR INVALD NAME";
-        
-        if(dhsID == null || dhsID.isEmpty())
+
+        if (dhsID == null || dhsID.isEmpty())
             this.dhsID = "-1";
     }
 
     // validates if the string given is only alpha characters and allows the
     // inclusion of spaces
     public boolean validateImmigrantStatus(String Status) {
-        if(Status == null || Status.isEmpty())
+        if (Status == null || Status.isEmpty())
             return false;
         newStatus = Pattern.matches("[a-zA-Z\s]*", Status) ? Status : null;
         return (newStatus != null) ? true : false;
@@ -36,7 +37,7 @@ public class DHSaccount {
 
     // validates if the string given is only numeric characters
     public boolean validateImmigrantID(String ID) {
-        if(ID == null || ID.isEmpty())
+        if (ID == null || ID.isEmpty())
             return false;
 
         immigrantID = Pattern.matches("[0-9]*", ID) ? ID : null;
