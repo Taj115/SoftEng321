@@ -72,7 +72,7 @@ public class DHSaccountTest {
     }
 
     @Test
-    // Siddharth - Test for immigrant ID.
+    // Siddharth - Test for immigrant ID. Checks if the right status is being set for immigrant id.
     public void getImmigrantIDTest() {
         DHSaccount test = new DHSaccount("Bourne", "status_2");
         test.setImmigrantID("status_2");

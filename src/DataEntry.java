@@ -90,7 +90,7 @@ public class DataEntry {
                 acc.setImmigrantID(immigrantIdText);
                 acc.setImmigrantStatus(immigrantStatusText);
                 if (!table.addAccDatabase(acc)) {
-                    logger.info("Unsucessful add to wrokflow table. Try again.");
+                    logger.info("Unsuccessful add to workflow table. Try again.");
                 }
 
                 frame.dispose();
