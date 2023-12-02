@@ -4,7 +4,7 @@ package com.example;
 public class app {
     private static workflow table;
 
-    public static void main(String[] args) {
+        public static void main(String[] args) {
         table = new workflow(); // Creates Workflow table
         table.startDataEntry(); // starts program
     }
