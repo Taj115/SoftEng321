@@ -1,11 +1,11 @@
-package tests;
+package cs321.src.test;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import src.DHSaccount;
-import src.workflow;
+import cs321.src.main.java.com.example.DHSaccount;
+import cs321.src.main.java.com.example.workflow;
 
 public class workflowtest {
 

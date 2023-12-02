@@ -1,4 +1,4 @@
-package src;
+package com.example;
 
 import java.util.logging.Logger;
 import java.awt.FlowLayout;
