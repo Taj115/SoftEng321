@@ -9,7 +9,7 @@ import src.DHSaccount;
 
 public class DHSaccountTest {
     @Test
-    // Antonios - Test for unintiallized dhsID = NULL should be -1
+    // Antonios - Test for uninitialized  dhsID = NULL should be -1
     public void DHSconstructorNULLIDTest() { 
         DHSaccount test = new DHSaccount("Bob Franz", null);
         assertEquals("-1", test.getAccID());
