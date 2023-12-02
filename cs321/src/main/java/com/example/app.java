@@ -1,4 +1,4 @@
-package src;
+package com.example;
 
 // Main Class to Tie Everything in with Each Other
 public class app {
