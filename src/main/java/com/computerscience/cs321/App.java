@@ -1,7 +1,7 @@
-package com.example;
+package com.computerscience.cs321;
 
 // Main Class to Tie Everything in with Each Other
-public class app {
+public class App {
     private static workflow table;
 
         public static void main(String[] args) {

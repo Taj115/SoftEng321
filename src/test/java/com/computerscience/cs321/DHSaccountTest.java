@@ -1,11 +1,9 @@
-package cs321.src.test;
+package com.computerscience.cs321;
 
 import static org.junit.Assert.*;
 // import org.junit.jupiter.api.Test;
 
 import org.junit.Test;
-
-import cs321.src.main.java.com.example.DHSaccount;
 
 public class DHSaccountTest {
     @Test

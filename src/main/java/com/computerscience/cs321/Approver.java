@@ -1,4 +1,4 @@
-package com.example;
+package com.computerscience.cs321;
 
 import java.awt.*;
 import java.awt.event.*;

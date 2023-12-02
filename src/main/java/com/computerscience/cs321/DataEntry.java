@@ -1,4 +1,4 @@
-package com.example;
+package com.computerscience.cs321;
 
 import java.util.logging.Logger;
 import java.awt.FlowLayout;
