@@ -104,7 +104,7 @@ public class DHSaccountTest {
     }
 
     @Test
-    public void validateImmigrantIDTest5() {
+    public void validateImmigrantIDTest5() { // Siddharth - Testing null status sent to validateImmigrantID
         DHSaccount test = new DHSaccount("spidey", "status_active");
         assertFalse(test.validateImmigrantID(null));
     }
